@@ -17,13 +17,29 @@
 		Use a weighting of 0 if you want it to never be selected.
 		Do not define a value of more than Integer.MAX_VALUE, which is 2,147,483,647.
 		You can use the 'clothing' parsing target to reference the type of the clothing which is being enchanted, which is an instance of AbstractClothingType. -->
-	<spawnWeighting><![CDATA[
-		#IF(clothing.getCoreFemininityRestriction()==FEMININITY_FEMININE || clothing.getCoreFemininityRestriction()==FEMININITY_FEMININE_STRONG)
-			100
-		#ELSE
-			10
-		#ENDIF
-	]]></spawnWeighting>
+  <spawnWeighting><![CDATA[
+    #IF(clothing.getEquipSlots().contains(IS_PENIS))
+      #IF(clothing.getItemTags(IS_PENIS).contains(ITEM_TAG_CONDOM))
+        0
+      #ELSEIF(clothing.getItemTags(IS_PENIS).contains(ITEM_TAG_CHASTITY)
+       || clothing.getItemTags(IS_PENIS).contains(ITEM_TAG_REQUIRES_NO_PENIS))
+        10
+      #ELSE
+        1000
+      #ENDIF
+    #ELSEIF(clothing.getEquipSlots().contains(IS_PIERCING_PENIS))
+      #IF(clothing.getItemTags(IS_PIERCING_PENIS).contains(ITEM_TAG_CONDOM))
+        0
+      #ELSEIF(clothing.getItemTags(IS_PIERCING_PENIS).contains(ITEM_TAG_CHASTITY)
+       || clothing.getItemTags(IS_PIERCING_PENIS).contains(ITEM_TAG_REQUIRES_NO_PENIS))
+        10
+      #ELSE
+        1000
+      #ENDIF
+    #ELSE
+      50
+    #ENDIF
+  ]]></spawnWeighting>
 	<!-- In the example above, this enchantment will only be randomly chosen if the clothing which it's being applied to is feminine.
 		A returned weighting of 0 means that it will never be chosen. -->
 	
