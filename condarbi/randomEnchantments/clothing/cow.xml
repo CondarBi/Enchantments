@@ -46,7 +46,7 @@
 	]]></namePrefix>
 	<!-- namePostfix assigns text after the clothing's type name.
 		e.g. A namePostfix of 'of the cow', when applied to a ring, would result in the name being 'Ring of the cow' -->
-	<namePostfix><![CDATA[of the cow]]></namePostfix>
+	<namePostfix><![CDATA[of Mega 'Milk']]></namePostfix>
 	<!-- namePrefix and namePostfix can be used in combination with each other.
 		So, for example, if you define them as so:
 			<namePrefix><![CDATA[Holy]]></namePrefix> 
@@ -77,10 +77,15 @@
 		<conditional><![CDATA[
 			[#flags.getInt('rapidTF')>=33]
 		]]></conditional>
-		<effect limit="75" mod1="TF_CORE" mod2="TF_MOD_FEMININITY" potency="BOOST" timer="0" type="CLOTHING"/>
-		<effect limit="25" mod1="TF_CORE" mod2="TF_MOD_SIZE_SECONDARY" potency="DRAIN" timer="0" type="CLOTHING"/>
-		<effect limit="16" mod1="TF_BREASTS" mod2="TF_MOD_SIZE" potency="BOOST" timer="0" type="CLOTHING"/>
-		<effect limit="75" mod1="TF_CORE" mod2="TF_MOD_SIZE_TERTIARY" potency="BOOST" timer="0" type="CLOTHING"/>
+    <effect limit="0" mod1="TF_PENIS" mod2="TF_TYPE_1" potency="BOOST" timer="0" type="CLOTHING"/>
+    <effect limit="50" mod1="TF_PENIS" mod2="TF_MOD_SIZE" potency="BOOST" timer="0" type="CLOTHING"/>
+    <effect limit="5" mod1="TF_PENIS" mod2="TF_MOD_SIZE_SECONDARY" potency="BOOST" timer="0" type="CLOTHING"/>
+    <effect limit="5" mod1="TF_PENIS" mod2="TF_MOD_SIZE_SECONDARY" potency="DRAIN" timer="0" type="CLOTHING"/>
+    <effect limit="3" mod1="TF_PENIS" mod2="TF_MOD_SIZE_TERTIARY" potency="DRAIN" timer="0" type="CLOTHING"/>
+    <effect limit="3" mod1="TF_PENIS" mod2="TF_MOD_SIZE_TERTIARY" potency="BOOST" timer="0" type="CLOTHING"/>
+    <effect limit="1000" mod1="TF_PENIS" mod2="TF_MOD_WETNESS" potency="BOOST" timer="0" type="CLOTHING"/>
+    <effect limit="10000" mod1="TF_PENIS" mod2="TF_MOD_REGENERATION" potency="BOOST" timer="0" type="CLOTHING"/>
+    <effect limit="100" mod1="TF_PENIS" mod2="TF_MOD_CUM_EXPULSION" potency="BOOST" timer="0" type="CLOTHING"/>
 	</itemEffects>
 	
 	<!-- The 'rapidTF' variable is used again to get a 33% chance of a rapid TF speed (MAJOR_BOOST and MAJOR_DRAIN results in hourly TFs) -->
@@ -88,37 +93,20 @@
 		<conditional><![CDATA[
 			[#flags.getInt('rapidTF')<33]
 		]]></conditional>
-		<effect limit="75" mod1="TF_CORE" mod2="TF_MOD_FEMININITY" potency="MAJOR_BOOST" timer="0" type="CLOTHING"/>
-		<effect limit="25" mod1="TF_CORE" mod2="TF_MOD_SIZE_SECONDARY" potency="MAJOR_DRAIN" timer="0" type="CLOTHING"/>
-		<effect limit="16" mod1="TF_BREASTS" mod2="TF_MOD_SIZE" potency="MAJOR_BOOST" timer="0" type="CLOTHING"/>
-		<effect limit="75" mod1="TF_CORE" mod2="TF_MOD_SIZE_TERTIARY" potency="MAJOR_BOOST" timer="0" type="CLOTHING"/>
+    <effect limit="0" mod1="TF_PENIS" mod2="TF_TYPE_1" potency="MAJOR_BOOST" timer="0" type="CLOTHING"/>
+    <effect limit="50" mod1="TF_PENIS" mod2="TF_MOD_SIZE" potency="MAJOR_BOOST" timer="0" type="CLOTHING"/>
+    <effect limit="5" mod1="TF_PENIS" mod2="TF_MOD_SIZE_SECONDARY" potency="MAJOR_BOOST" timer="0" type="CLOTHING"/>
+    <effect limit="5" mod1="TF_PENIS" mod2="TF_MOD_SIZE_SECONDARY" potency="MAJOR_DRAIN" timer="0" type="CLOTHING"/>
+    <effect limit="3" mod1="TF_PENIS" mod2="TF_MOD_SIZE_TERTIARY" potency="MAJOR_DRAIN" timer="0" type="CLOTHING"/>
+    <effect limit="3" mod1="TF_PENIS" mod2="TF_MOD_SIZE_TERTIARY" potency="MAJOR_BOOST" timer="0" type="CLOTHING"/>
+    <effect limit="1000" mod1="TF_PENIS" mod2="TF_MOD_WETNESS" potency="MAJOR_BOOST" timer="0" type="CLOTHING"/>
+    <effect limit="10000" mod1="TF_PENIS" mod2="TF_MOD_REGENERATION" potency="MAJOR_BOOST" timer="0" type="CLOTHING"/>
+    <effect limit="100" mod1="TF_PENIS" mod2="TF_MOD_CUM_EXPULSION" potency="MAJOR_BOOST" timer="0" type="CLOTHING"/>
 	</itemEffects>
 	
 	<!-- The 'conditional' elements should be used if some of the effects you're adding might conflict with the player's content settings.
 		Common settings to check are game.isNonConEnabled(), game.isAnalContentEnabled(), and game.isFootContentEnabled() 
 		There are also some other checks which are used fequently; you can find these methods in this file: https://github.com/Innoxia/liliths-throne-public/blob/dev/src/com/lilithsthrone/game/Game.java -->
-	<itemEffects>
-		<!-- So long as the text returned by the 'conditional' element is "true", then you can use whatever formatting works.
-			This is a more verbose example than the ones above for the purpose of demonstration, but it'd probably be best to use the shorter format for readability, which would look like this: [#game.isLactationContentEnabled() && flags.getInt('rapidTF')>=33] -->
-		<conditional><![CDATA[
-			#IF(game.isLactationContentEnabled() && flags.getInt('rapidTF')>=33)
-				true
-			#ELSE
-				false
-			#ENDIF
-		]]></conditional>
-		<effect limit="500" mod1="TF_BREASTS" mod2="TF_MOD_WETNESS" potency="BOOST" timer="0" type="CLOTHING"/>
-	</itemEffects>
 	
-	<itemEffects>
-		<conditional><![CDATA[
-			#IF(game.isLactationContentEnabled() && flags.getInt('rapidTF')<33)
-				true
-			#ELSE
-				false
-			#ENDIF
-		]]></conditional>
-		<effect limit="500" mod1="TF_BREASTS" mod2="TF_MOD_WETNESS" potency="MAJOR_BOOST" timer="0" type="CLOTHING"/>
-	</itemEffects>
 	
 </enchantment>
